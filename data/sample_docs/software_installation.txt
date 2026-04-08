@@ -1,0 +1,428 @@
+================================================================================
+                         ACME CORPORATION
+                 IT RUNBOOK: SOFTWARE INSTALLATION AND
+                       LICENSE MANAGEMENT
+================================================================================
+
+Document ID:      IT-RB-003
+Version:          2.8
+Last Updated:     2026-03-01
+Owner:            IT Service Delivery Team
+Classification:   Internal Use Only
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+  1. Overview
+  2. Approved Software List
+  3. Self-Service Software Installation
+  4. Requesting Software Through the IT Portal
+  5. Admin-Required Installations
+  6. License Management
+  7. Prohibited Software
+  8. Software Update Policy
+  9. Uninstalling Software
+ 10. Frequently Asked Questions
+ 11. Contact Information
+
+================================================================================
+1. OVERVIEW
+================================================================================
+
+Acme Corporation maintains a curated catalog of approved software to ensure
+security, compliance, and license management. Employees may install certain
+applications on their own (self-service), while others require IT
+administrator intervention or management approval.
+
+All software requests are processed through Jira Service Management (JSM) at:
+  https://helpdesk.acmecorp.com
+
+Software is deployed through the following channels:
+  - Windows: Microsoft Software Center (Intune / SCCM)
+  - macOS:   Jamf Self Service
+  - Linux:   IT-managed apt/yum repositories + manual installs
+
+Policy: Only approved software may be installed on corporate devices.
+Installing unapproved software is a violation of the Acceptable Use Policy
+and may result in disciplinary action.
+
+================================================================================
+2. APPROVED SOFTWARE LIST
+================================================================================
+
+The following categories of software are approved for use at Acme Corporation.
+For the full catalog with version numbers, see the Software Catalog on the
+intranet: https://intranet.acmecorp.com/it/software-catalog
+
+CATEGORY: PRODUCTIVITY & COMMUNICATION
+  - Microsoft 365 (Word, Excel, PowerPoint, Outlook, OneNote)  [Pre-installed]
+  - Slack Desktop                                               [Self-service]
+  - Zoom                                                        [Self-service]
+  - Microsoft Teams                                             [Pre-installed]
+  - 1Password                                                   [Self-service]
+  - Adobe Acrobat Reader                                        [Self-service]
+  - Adobe Creative Cloud (Design team only)                     [License req.]
+  - Notion                                                      [Self-service]
+
+CATEGORY: DEVELOPMENT TOOLS
+  - Visual Studio Code                                          [Self-service]
+  - JetBrains IDEs (IntelliJ, PyCharm, WebStorm, GoLand)       [License req.]
+  - Git                                                         [Self-service]
+  - Docker Desktop                                              [Admin install]
+  - Postman                                                     [Self-service]
+  - Node.js (LTS versions)                                      [Self-service]
+  - Python 3.x                                                  [Self-service]
+  - Homebrew (macOS)                                            [Self-service]
+  - Windows Subsystem for Linux (WSL2)                          [Admin install]
+  - Xcode (macOS)                                               [Self-service]
+  - Android Studio                                              [Admin install]
+
+CATEGORY: BROWSERS
+  - Google Chrome                                               [Self-service]
+  - Mozilla Firefox                                             [Self-service]
+  - Microsoft Edge                                              [Pre-installed]
+
+CATEGORY: UTILITIES
+  - 7-Zip / The Unarchiver                                      [Self-service]
+  - Snagit (screen capture)                                     [License req.]
+  - OBS Studio (screen recording)                               [Self-service]
+  - Grammarly Desktop                                           [Self-service]
+  - Rectangle (macOS window management)                         [Self-service]
+
+CATEGORY: SECURITY
+  - CrowdStrike Falcon                                          [Pre-installed]
+  - Cisco AnyConnect VPN                                        [Self-service]
+  - Cisco Umbrella                                              [Pre-installed]
+
+================================================================================
+3. SELF-SERVICE SOFTWARE INSTALLATION
+================================================================================
+
+The following applications can be installed by employees without IT
+assistance or approval. No ticket is required.
+
+--- Windows (via Microsoft Software Center) ---
+
+  Step 1:  Open the Start menu and search for "Software Center."
+  Step 2:  Browse the "Applications" tab or use the search bar.
+  Step 3:  Click on the desired application.
+  Step 4:  Click "Install."
+  Step 5:  Wait for the installation to complete. A green checkmark will
+           appear when finished.
+  Step 6:  Launch the application from the Start menu.
+
+--- macOS (via Jamf Self Service) ---
+
+  Step 1:  Open "Self Service" from the Applications folder, Launchpad,
+           or the Dock.
+  Step 2:  Browse categories or search for the application.
+  Step 3:  Click "Install."
+  Step 4:  Enter your Mac password if prompted.
+  Step 5:  The application will appear in the Applications folder when
+           installation is complete.
+
+--- Linux (via IT-managed repositories) ---
+
+  Step 1:  Ensure your system is connected to the Acme package repository:
+             $ cat /etc/apt/sources.list.d/acme.list    (Ubuntu/Debian)
+             $ cat /etc/yum.repos.d/acme.repo            (RHEL/Fedora)
+  Step 2:  Update package lists:
+             $ sudo apt update       (Ubuntu/Debian)
+             $ sudo dnf check-update (RHEL/Fedora)
+  Step 3:  Install the desired package:
+             $ sudo apt install <package-name>
+             $ sudo dnf install <package-name>
+
+  Available self-service packages for Linux:
+    - visual-studio-code, slack-desktop, zoom, google-chrome,
+      firefox, git, nodejs-lts, python3, postman
+
+Note: If the application you need is not available in Software Center,
+Self Service, or the IT repository, submit a request per Section 4.
+
+================================================================================
+4. REQUESTING SOFTWARE THROUGH THE IT PORTAL
+================================================================================
+
+For software not available through self-service channels:
+
+  Step 1:  Navigate to https://helpdesk.acmecorp.com.
+  Step 2:  Log in with your Okta credentials.
+  Step 3:  Click "Request Something" in the navigation menu.
+  Step 4:  Select "Software Installation Request."
+  Step 5:  Fill out the request form:
+             a) Software Name: Full name and version if known
+             b) Publisher/Vendor: The software vendor
+             c) Business Justification: Why you need this software
+                (1-2 sentences minimum)
+             d) Urgency: Low / Medium / High / Critical
+             e) Cost: Free / Paid (include estimated cost for paid software)
+             f) Platform: Windows / macOS / Linux
+             g) Number of Licenses Needed: 1 unless requesting for a team
+  Step 6:  Click "Submit."
+  Step 7:  Your request will follow this approval workflow:
+             a) IT Security Review: Software is checked against the
+                security policy and vulnerability databases.
+                (SLA: 1 business day)
+             b) Manager Approval: Your direct manager approves the
+                business justification and cost (if applicable).
+                (SLA: 1 business day)
+             c) License Procurement: If paid, IT Procurement acquires
+                the license.
+                (SLA: 3-5 business days for standard software;
+                 5-10 business days for enterprise agreements)
+             d) IT Installation: Software is deployed to your device
+                or made available in self-service.
+                (SLA: 1 business day after license is available)
+  Step 8:  You will receive email notifications as your request progresses
+           through each stage.
+  Step 9:  Total turnaround time:
+             - Free software: 2-3 business days
+             - Paid software (existing license pool): 3-5 business days
+             - Paid software (new procurement): 7-15 business days
+
+Expedited Requests:
+  If you need software urgently for a critical project, mark the urgency
+  as "Critical" and include a brief explanation. Contact your manager to
+  pre-approve the request. Then email helpdesk@acmecorp.com with the
+  ticket number to request expedited processing.
+
+================================================================================
+5. ADMIN-REQUIRED INSTALLATIONS
+================================================================================
+
+The following software requires IT administrator privileges to install due
+to system-level changes, security implications, or licensing complexity:
+
+  5.1  Docker Desktop
+       - Requires Hyper-V (Windows) or root-level virtualization (macOS/Linux)
+       - IT will configure resource limits and registry mirrors
+       - Submit request: Category > Development Tools > Docker Desktop
+       - SLA: 1 business day after approval
+
+  5.2  Windows Subsystem for Linux (WSL2)
+       - Requires Windows feature activation and kernel update
+       - Default distribution: Ubuntu 22.04 LTS
+       - Submit request: Category > Development Tools > WSL2
+       - SLA: 1 business day
+
+  5.3  Android Studio
+       - Requires significant disk space (~10 GB) and SDK management
+       - IT will configure the Android SDK location and emulator settings
+       - Submit request: Category > Development Tools > Android Studio
+       - SLA: 1-2 business days
+
+  5.4  VirtualBox / VMware Workstation
+       - Virtualization software requires security review
+       - Must provide business justification
+       - Submit request: Category > Development Tools > Virtualization
+       - SLA: 2-3 business days
+
+  5.5  Custom Development Packages Requiring Elevated Privileges
+       - Some npm global packages, pip packages with C extensions, or
+         system libraries may require admin rights
+       - Submit a ticket with the specific packages needed
+       - IT can grant temporary elevated access (4-hour window) or
+         install the packages directly
+
+  5.6  Database Clients with Local Server Components
+       - MySQL Workbench, pgAdmin, MongoDB Compass (if local server needed)
+       - Submit request: Category > Development Tools > Database Tools
+       - SLA: 1 business day
+
+================================================================================
+6. LICENSE MANAGEMENT
+================================================================================
+
+  6.1  License Types at Acme Corporation:
+
+       a) Site License: Unlimited installs for all employees
+          Examples: Microsoft 365, CrowdStrike, Slack
+
+       b) Named User License: Assigned to specific individuals
+          Examples: JetBrains IDEs, Adobe Creative Cloud, Snagit
+          To request: Submit a software request per Section 4
+
+       c) Concurrent/Floating License: Limited pool shared across users
+          Examples: MATLAB, Tableau Desktop
+          Check availability: https://intranet.acmecorp.com/it/license-dashboard
+
+       d) Open Source / Free: No license management needed
+          Examples: VS Code, Chrome, Firefox, Git, Node.js, Python
+
+  6.2  License Compliance Rules:
+       - Do NOT share license keys or credentials with colleagues.
+       - Do NOT install licensed software on personal devices unless
+         explicitly permitted by the license agreement.
+       - Unused licenses must be returned. If you no longer need a
+         licensed application, submit a ticket to release the license.
+       - During offboarding, all licensed software is automatically
+         deprovisioned.
+
+  6.3  License Audits:
+       - IT conducts quarterly license audits.
+       - You may be asked to confirm you are actively using licensed software.
+       - Unused licenses (no activity for 90+ days) will be reclaimed after
+         notification.
+
+  6.4  License Budget:
+       - Each department has an annual software license budget.
+       - Requests for expensive software ($500+ per license/year) require
+         director-level approval in addition to manager approval.
+       - For enterprise agreements or bulk purchases (5+ licenses),
+         contact the IT Procurement team: procurement@acmecorp.com.
+
+================================================================================
+7. PROHIBITED SOFTWARE
+================================================================================
+
+The following categories of software are STRICTLY PROHIBITED on corporate
+devices. Violation may result in disciplinary action up to and including
+termination.
+
+  7.1  Unauthorized Remote Access Tools
+       - TeamViewer, AnyDesk, LogMeIn (personal versions)
+       - Reason: Bypasses corporate security controls
+       - Exception: IT-managed remote support tools only
+
+  7.2  Peer-to-Peer (P2P) File Sharing
+       - BitTorrent, uTorrent, qBittorrent, LimeWire
+       - Reason: Legal liability, bandwidth abuse, malware risk
+
+  7.3  Unauthorized VPN/Proxy Software
+       - NordVPN, ExpressVPN, TunnelBear, Tor Browser
+       - Reason: Circumvents network security monitoring
+       - Exception: Cisco AnyConnect (corporate VPN) only
+
+  7.4  Cryptocurrency Mining Software
+       - Any mining software or blockchain nodes
+       - Reason: Resource abuse, security risk
+
+  7.5  Hacking / Penetration Testing Tools (without authorization)
+       - Kali Linux tools, Metasploit, Burp Suite, nmap
+       - Exception: Security team members with written authorization
+
+  7.6  Unlicensed / Pirated Software
+       - Any software obtained through unofficial channels
+       - "Cracked" versions of commercial software
+       - Reason: Legal liability, malware risk
+
+  7.7  Personal Cloud Storage (for corporate data)
+       - Dropbox (personal), Google Drive (personal), iCloud
+       - Reason: Data loss prevention. Use OneDrive/SharePoint instead.
+       - Exception: Google Workspace for marketing team (approved)
+
+  7.8  Unvetted AI Tools
+       - ChatGPT Desktop (personal account), unauthorized AI code tools
+       - Reason: Risk of sensitive data exposure
+       - Approved alternatives: GitHub Copilot (with corporate license),
+         Microsoft Copilot (integrated into M365)
+
+If you are unsure whether a specific application is approved, check the
+Software Catalog or submit a query to helpdesk@acmecorp.com before
+installing.
+
+================================================================================
+8. SOFTWARE UPDATE POLICY
+================================================================================
+
+  8.1  Operating System Updates:
+       - Windows: Managed via Intune. Updates are tested and deployed
+         within 14 days of release. Critical security patches within 72 hours.
+       - macOS: Managed via Jamf. Same timeline as Windows.
+       - Linux: Employees are responsible for applying updates. Critical
+         security patches must be applied within 7 days.
+
+  8.2  Application Updates:
+       - Self-service applications: Update notifications will appear in
+         Software Center / Self Service. Apply within 7 days.
+       - Managed applications: IT pushes updates automatically.
+       - Browser updates: Must be applied within 48 hours of availability.
+
+  8.3  Restart Requirements:
+       - After critical updates, you may be prompted to restart within
+         24 hours. Do not defer restarts beyond this window.
+
+================================================================================
+9. UNINSTALLING SOFTWARE
+================================================================================
+
+  Step 1:  Before uninstalling, ensure you have saved any data or
+           configuration from the application.
+  Step 2:  Uninstall via system tools:
+             Windows: Settings > Apps > Apps & Features > Select app > Uninstall
+             macOS:   Drag app from Applications to Trash, then empty Trash
+             Linux:   sudo apt remove <package> / sudo dnf remove <package>
+  Step 3:  If the software had a named license, submit a ticket at
+           https://helpdesk.acmecorp.com to release the license.
+  Step 4:  If you cannot uninstall (requires admin privileges), submit a
+           ticket: Category > Software > Uninstall Request.
+
+================================================================================
+10. FREQUENTLY ASKED QUESTIONS
+================================================================================
+
+Q: Can I install software from the Mac App Store or Microsoft Store?
+A: Only applications that appear in the Approved Software List (Section 2)
+   may be installed. If an approved app is available on the store, you may
+   install it from there. If unsure, check with IT first.
+
+Q: I need a software trial for evaluation. Can I install it?
+A: Submit a software request with "Evaluation/Trial" in the justification.
+   IT will review the software security profile and approve or deny within
+   1 business day.
+
+Q: Can I use Homebrew/apt/pip to install development packages?
+A: Yes, for standard development libraries and tools (e.g., brew install jq,
+   pip install requests). Do NOT install system-level services or tools that
+   listen on network ports without IT approval.
+
+Q: My software request was denied. What can I do?
+A: The denial reason will be stated in the Jira ticket. Common reasons:
+   security risk, existing approved alternative, license cost. You may
+   appeal by replying to the ticket with additional justification. Appeals
+   are reviewed by the IT Manager within 2 business days.
+
+Q: How do I check which software is installed on my computer?
+A: Windows: Settings > Apps > Apps & Features
+   macOS: Open Finder > Applications
+   Linux: dpkg --list / rpm -qa
+
+Q: Can I install software on a virtual machine running on my corporate laptop?
+A: VMs on corporate laptops are subject to the same software policy. All
+   software in the VM must be approved.
+
+================================================================================
+11. CONTACT INFORMATION
+================================================================================
+
+  IT Help Desk
+    Email:    helpdesk@acmecorp.com
+    Phone:    ext. 5000 (internal) / +1 (555) 867-5000 (external)
+    Portal:   https://helpdesk.acmecorp.com
+    Hours:    Monday - Friday, 7:00 AM - 7:00 PM Eastern Time
+
+  IT Service Delivery Team
+    Email:    it-service-delivery@acmecorp.com
+    Slack:    #it-software-support
+
+  IT Procurement
+    Email:    procurement@acmecorp.com
+    For license purchases, renewals, and enterprise agreements.
+
+  IT Security (for software approval questions)
+    Email:    it-security@acmecorp.com
+    Slack:    #it-security-questions
+
+  Escalation Path:
+    Level 1:  IT Help Desk (ext. 5000)
+    Level 2:  IT Service Delivery Team (it-service-delivery@acmecorp.com)
+    Level 3:  IT Service Delivery Manager - Angela Torres
+              (angela.torres@acmecorp.com)
+    Level 4:  Director of IT Operations - Michael Park
+              (michael.park@acmecorp.com)
+
+================================================================================
+                    END OF DOCUMENT - IT-RB-003 v2.8
+================================================================================
