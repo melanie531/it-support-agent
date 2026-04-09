@@ -1,0 +1,137 @@
+Acme Corporation — IT Runbook
+Printer Setup & Troubleshooting
+Last Updated: 2025-06-10
+Document Owner: IT Operations Team
+
+========================================
+1. NETWORK PRINTERS BY LOCATION
+========================================
+
+Acme headquarters has network printers on every floor. Use the printer closest
+to your workspace.
+
+Building A (Main Office):
+    - Floor 1: PRINTER-A1-CLR (HP Color LaserJet Pro, color + duplex)
+    - Floor 2: PRINTER-A2-CLR (HP Color LaserJet Pro, color + duplex)
+    - Floor 2: PRINTER-A2-BW  (HP LaserJet Enterprise, B&W only, high speed)
+    - Floor 3: PRINTER-A3-CLR (HP Color LaserJet Pro, color + duplex)
+
+Building B (Engineering):
+    - Floor 1: PRINTER-B1-CLR (HP Color LaserJet Pro, color + duplex)
+    - Floor 2: PRINTER-B2-BW  (HP LaserJet Enterprise, B&W only, high speed)
+
+Building C (Warehouse):
+    - Floor 1: PRINTER-C1-BW  (HP LaserJet Enterprise, B&W only)
+
+Printers with "CLR" suffix support color and duplex printing.
+Printers with "BW" suffix are black-and-white only but are faster for large jobs.
+
+========================================
+2. ADDING A NETWORK PRINTER
+========================================
+
+2.1 Windows
+    Step 1: Open Settings > Bluetooth & devices > Printers & scanners
+    Step 2: Click "Add device"
+    Step 3: Click "Add manually" if the printer isn't found automatically
+    Step 4: Select "Add a printer using a TCP/IP address"
+    Step 5: Enter the printer's hostname (e.g., PRINTER-A2-CLR.acmecorp.internal)
+    Step 6: Windows will auto-detect the driver; if not, select "HP Universal Print Driver"
+    Step 7: Name the printer and click "Finish"
+
+2.2 macOS
+    Step 1: Open System Settings > Printers & Scanners
+    Step 2: Click the "+" button to add a printer
+    Step 3: Select the "IP" tab
+    Step 4: Enter the printer address: PRINTER-A2-CLR.acmecorp.internal
+    Step 5: Protocol: HP Jetdirect — Socket
+    Step 6: Name: Give it a descriptive name (e.g., "Floor 2 Color")
+    Step 7: Driver: Select "HP Universal Print Driver" or "Generic PostScript"
+    Step 8: Click "Add"
+
+Note: You must be connected to the corporate network (in-office or via VPN) to
+add and use network printers.
+
+========================================
+3. COMMON PRINT ISSUES
+========================================
+
+3.1 Printer Shows "Offline"
+    Step 1: Check if the printer's display panel shows any errors
+    Step 2: Verify you're on the corporate network (Wi-Fi: AcmeCorp or VPN)
+    Step 3: Try removing and re-adding the printer
+    Step 4: Restart the Print Spooler service:
+            Windows: Open Services > "Print Spooler" > Restart
+            macOS: System Settings > Printers & Scanners > right-click printer > Reset printing system
+
+3.2 Paper Jam
+    Step 1: Open the front panel and any trays indicated on the printer display
+    Step 2: Gently pull out jammed paper in the direction of paper flow
+    Step 3: Check for small torn pieces of paper
+    Step 4: Close all panels and trays
+    Step 5: The printer should automatically resume
+    Step 6: If the jam persists, contact Facilities at facilities@acmecorp.com
+
+3.3 Print Driver Errors
+    Step 1: Go to https://support.hp.com/drivers
+    Step 2: Search for "HP Universal Print Driver" (PCL6)
+    Step 3: Download and install the latest version
+    Step 4: Remove and re-add the printer with the new driver
+    Alternatively, use the HP Smart app for automatic driver management.
+
+3.4 Print Jobs Stuck in Queue
+    Step 1: Open the print queue:
+            Windows: Settings > Printers > Open print queue
+            macOS: System Settings > Printers & Scanners > Open Print Queue
+    Step 2: Cancel all stuck jobs
+    Step 3: Restart the Print Spooler (see 3.1 Step 4)
+    Step 4: Try printing again
+
+========================================
+4. SCANNING TO EMAIL
+========================================
+
+All "CLR" printers support scan-to-email:
+
+Step 1: Place your document on the scanner glass or in the auto-feeder
+Step 2: On the printer touchscreen, select "Scan"
+Step 3: Select "Scan to Email"
+Step 4: Enter your email address (firstname.lastname@acmecorp.com)
+Step 5: Choose scan settings:
+        - Format: PDF (default) or JPEG
+        - Resolution: 300 DPI (default) or 600 DPI for high quality
+        - Color: Auto, Color, or Black & White
+Step 6: Press "Scan"
+Step 7: The scanned document will arrive in your inbox within 1-2 minutes
+
+========================================
+5. TONER & SUPPLY REQUESTS
+========================================
+
+Printers are managed by the Facilities team. To request supplies:
+
+- Toner replacement: Submit a request at https://jira.acmecorp.com/servicedesk > "Printer Supplies"
+- Paper refills: Each floor has a supply closet (labeled "Print Supplies") — help yourself
+- If a supply closet is empty: Email facilities@acmecorp.com
+- Toner is typically replaced within 4 hours of a request during business hours
+
+Do NOT attempt to replace toner cartridges yourself unless you've been trained.
+Incorrect installation can damage the printer.
+
+========================================
+6. DUPLEX & COLOR PRINTING TIPS
+========================================
+
+- Duplex (double-sided) printing is enabled by default on all CLR printers to save paper
+- To print single-sided: Change the setting in your print dialog before printing
+- Color printing: Available on CLR printers only. BW printers will convert color to grayscale.
+- For large print jobs (50+ pages): Use the BW printers for faster throughput
+- For presentation materials: Use CLR printers with "Best" quality setting
+
+========================================
+7. CONTACT
+========================================
+
+- Printer setup help: IT Help Desk — helpdesk@acmecorp.com or ext. 5000
+- Paper jams & physical issues: Facilities — facilities@acmecorp.com or ext. 5010
+- Toner & supplies: https://jira.acmecorp.com/servicedesk > "Printer Supplies"
